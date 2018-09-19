@@ -4,6 +4,8 @@ import open from 'open';
 import webpack from 'webpack';
 import config from '../webpack.config.dev';
 
+/* eslint-disable no-console */
+
 const port = 3000;
 const app = express();
 const compiler = webpack(config);
@@ -13,8 +15,16 @@ app.use(require('webpack-dev-middleware')(compiler, {
   publicPath: config.output.publicPath
 }));
 
-app.get('/', (req,res) =>{
+app.get('/', (req,res) => {
   res.sendFile(path.join(__dirname, '../src/index.html'))
+});
+
+app.get('/users', (req,res) => {
+  res.json([
+    {"id":1, "firstName":"Lewis","lastName":"Rodriguez","email":"l.rodriguez@gmail.com"},
+    {"id":2, "firstName":"Erick","lastName":"Casado","email":"e.casado@gmail.com"},
+    {"id":3, "firstName":"Jesus","lastName":"Rivera","email":"j.rivera@gmail.com"}
+  ]);
 });
 
 app.listen(port, err =>{
