@@ -16,7 +16,7 @@ export default {
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
-    filename: '[name][chunkhash].js'
+    filename: '[name].[chunkhash].js'
   },
   plugins: [
     new extractTextPlugin('[name].[contenthash].css'),
